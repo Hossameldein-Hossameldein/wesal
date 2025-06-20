@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وصال - الملف الشخصي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif']
+                    },
+                    colors: {
+                        'sky-pastel': '#87CEEB',
+                        'lavender-pastel': '#E6E6FA',
+                        'green-pastel': '#98FB98'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-cairo bg-gradient-to-br from-white via-sky-pastel to-lavender-pastel min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-bold text-purple-800">وصال</a>
+                <div class="hidden md:flex space-x-reverse space-x-6">
+                    <a href="community.html" class="text-purple-700 hover:text-purple-900 transition-colors">المجتمع</a>
+                    <a href="awareness-map.html" class="text-purple-700 hover:text-purple-900 transition-colors">خريطة الوعي</a>
+                    <a href="library.html" class="text-purple-700 hover:text-purple-900 transition-colors">المكتبة</a>
+                    <a href="contact.html" class="text-purple-700 hover:text-purple-900 transition-colors">الدعم</a>
+                </div>
+                <button id="logout-btn" class="text-purple-600 hover:text-purple-800 transition-colors">خروج</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+                <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-reverse lg:space-x-8">
+                    <!-- Profile Avatar -->
+                    <div class="relative">
+                        <div id="profile-avatar" class="w-32 h-32 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-lg">
+                            <!-- User initial will be added here -->
+                        </div>
+                        <div class="absolute -bottom-2 -right-2 bg-green-400 w-8 h-8 rounded-full flex items-center justify-center">
+                            <span class="text-white text-lg">✨</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="flex-1 text-center lg:text-right">
+                        <h1 id="profile-name" class="text-3xl font-bold text-purple-900 mb-2">اسم المستخدم</h1>
+                        <p id="profile-bio" class="text-purple-600 mb-4">في رحلة البحث عن النور الداخلي</p>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-6 mb-6">
+                            <div class="text-center">
+                                <div id="awareness-tone" class="text-2xl font-bold text-purple-900">0</div>
+                                <div class="text-purple-600 text-sm">نبرة الوعي</div>
+                            </div>
+                            <div class="text-center">
+                                <div id="interaction-count" class="text-2xl font-bold text-purple-900">0</div>
+                                <div class="text-purple-600 text-sm">التفاعلات</div>
+                            </div>
+                            <div class="text-center">
+                                <div id="posts-count" class="text-2xl font-bold text-purple-900">0</div>
+                                <div class="text-purple-600 text-sm">المنشورات</div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-reverse sm:space-x-4">
+                            <button id="edit-profile-btn" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors">
+                                تحرير الملف الشخصي
+                            </button>
+                            <button class="bg-white text-purple-600 border-2 border-purple-600 px-6 py-2 rounded-full hover:bg-purple-50 transition-colors">
+                                مشاركة الملف
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Spiritual Journey -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">الرحلة الروحية</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-purple-700">مستوى الوعي</span>
+                                <span class="text-purple-900 font-semibold" id="awareness-level">المبتدئ</span>
+                            </div>
+                            <div class="w-full bg-purple-200 rounded-full h-2">
+                                <div id="awareness-progress" class="bg-purple-600 h-2 rounded-full transition-all duration-300" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="text-purple-700">أيام التأمل</span>
+                                <span class="text-purple-900 font-semibold" id="meditation-days">0</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div id="meditation-progress" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">النشاط الأخير</h3>
+                    <div class="space-y-3" id="recent-activity">
+                        <!-- Activity items will be added here -->
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-bold text-purple-900 mb-4">الإنجازات</h3>
+                    <div class="grid grid-cols-3 gap-3" id="achievements">
+                        <!-- Achievement badges will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Posts History -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-purple-900">سجل منشوراتي</h3>
+                    <div class="flex space-x-reverse space-x-4">
+                        <button id="filter-all" class="px-4 py-2 rounded-full bg-purple-600 text-white text-sm">الكل</button>
+                        <button id="filter-posts" class="px-4 py-2 rounded-full text-purple-600 text-sm hover:bg-purple-100 transition-colors">المنشورات</button>
+                        <button id="filter-interactions" class="px-4 py-2 rounded-full text-purple-600 text-sm hover:bg-purple-100 transition-colors">التفاعلات</button>
+                    </div>
+                </div>
+                
+                <div id="posts-history" class="space-y-4">
+                    <!-- User posts will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-modal" class="fixed inset-0 bg-black/50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-purple-900">تحرير الملف الشخصي</h3>
+                <button id="close-modal" class="text-purple-600 hover:text-purple-800 transition-colors">✕</button>
+            </div>
+            
+            <form id="edit-form">
+                <div class="mb-4">
+                    <label class="block text-purple-800 font-semibold mb-2">الاسم</label>
+                    <input type="text" id="edit-name" class="w-full p-3 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-purple-800 font-semibold mb-2">النبذة الشخصية</label>
+                    <textarea id="edit-bio" rows="3" class="w-full p-3 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:outline-none transition-colors resize-none"></textarea>
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-purple-800 font-semibold mb-2">لون الملف الشخصي</label>
+                    <div class="flex space-x-reverse space-x-3">
+                        <button type="button" class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 border-2 border-transparent" data-color="purple-pink"></button>
+                        <button type="button" class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-green-500 border-2 border-transparent" data-color="blue-green"></button>
+                        <button type="button" class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 border-2 border-transparent" data-color="orange-red"></button>
+                        <button type="button" class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-teal-500 border-2 border-transparent" data-color="green-teal"></button>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-reverse space-x-4">
+                    <button type="submit" class="flex-1 bg-purple-600 text-white py-3 rounded-xl hover:bg-purple-700 transition-colors">
+                        حفظ التغييرات
+                    </button>
+                    <button type="button" id="cancel-edit" class="flex-1 bg-gray-200 text-gray-800 py-3 rounded-xl hover:bg-gray-300 transition-colors">
+                        إلغاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
