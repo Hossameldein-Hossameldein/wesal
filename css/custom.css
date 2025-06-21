@@ -6,6 +6,86 @@
 body {
     direction: rtl;
     font-family: 'Cairo', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode Styles */
+.dark {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e2e8f0;
+}
+
+.dark .bg-white\/90 {
+    background: rgba(30, 41, 59, 0.9) !important;
+}
+
+.dark .bg-white\/80 {
+    background: rgba(30, 41, 59, 0.8) !important;
+}
+
+.dark .bg-white\/50 {
+    background: rgba(30, 41, 59, 0.5) !important;
+}
+
+.dark .bg-white {
+    background: #1e293b !important;
+}
+
+.dark .text-purple-900 {
+    color: #e2e8f0 !important;
+}
+
+.dark .text-purple-800 {
+    color: #cbd5e1 !important;
+}
+
+.dark .text-purple-700 {
+    color: #94a3b8 !important;
+}
+
+.dark .text-purple-600 {
+    color: #64748b !important;
+}
+
+.dark .border-purple-200 {
+    border-color: #475569 !important;
+}
+
+.dark .border-purple-100 {
+    border-color: #334155 !important;
+}
+
+.dark .bg-purple-100 {
+    background: #334155 !important;
+}
+
+.dark .bg-purple-50 {
+    background: #1e293b !important;
+}
+
+.dark .bg-gray-100 {
+    background: #374151 !important;
+}
+
+.dark .bg-gray-50 {
+    background: #1f2937 !important;
+}
+
+.dark .text-gray-800 {
+    color: #e5e7eb !important;
+}
+
+.dark .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+.dark nav {
+    background: rgba(15, 23, 42, 0.9) !important;
+    backdrop-filter: blur(12px);
+}
+
+.dark footer {
+    background: #0f172a !important;
 }
 
 /* Animations */
@@ -266,4 +346,171 @@ input:focus, textarea:focus, select:focus {
 
 .btn-spiritual:hover::before {
     left: 100%;
+}
+
+/* Theme Toggle Styles */
+.theme-toggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #e5e7eb;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.theme-toggle.dark-mode {
+    background: #374151;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.theme-toggle.dark-mode::before {
+    transform: translateX(30px);
+    background: #1f2937;
+}
+
+.theme-toggle .sun-icon {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle .moon-icon {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle.dark-mode .sun-icon {
+    opacity: 0;
+}
+
+.theme-toggle.dark-mode .moon-icon {
+    opacity: 1;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 400px;
+    min-width: 300px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-left: 4px solid;
+    font-family: 'Cairo', sans-serif;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: rgba(34, 197, 94, 0.95);
+    color: white;
+    border-left-color: #16a34a;
+}
+
+.notification.error {
+    background: rgba(239, 68, 68, 0.95);
+    color: white;
+    border-left-color: #dc2626;
+}
+
+.notification.warning {
+    background: rgba(245, 158, 11, 0.95);
+    color: white;
+    border-left-color: #d97706;
+}
+
+.notification.info {
+    background: rgba(59, 130, 246, 0.95);
+    color: white;
+    border-left-color: #2563eb;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notification-message {
+    flex: 1;
+    margin-right: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: currentColor;
+    cursor: pointer;
+    font-size: 18px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+.notification-icon {
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+/* Dark mode notification adjustments */
+.dark .notification.success {
+    background: rgba(22, 163, 74, 0.9);
+}
+
+.dark .notification.error {
+    background: rgba(220, 38, 38, 0.9);
+}
+
+.dark .notification.warning {
+    background: rgba(217, 119, 6, 0.9);
+}
+
+.dark .notification.info {
+    background: rgba(37, 99, 235, 0.9);
 }

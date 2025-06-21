@@ -27,8 +27,12 @@
 <body class="font-cairo bg-gradient-to-br from-lavender-pastel via-white to-sky-pastel min-h-screen">
     <!-- Navigation -->
     <nav class="p-6">
-        <div class="container mx-auto">
+        <div class="container mx-auto flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-purple-800 hover:text-purple-900 transition-colors">← وصال</a>
+            <button id="theme-toggle" class="theme-toggle">
+                <span class="sun-icon">☀️</span>
+                <span class="moon-icon">🌙</span>
+            </button>
         </div>
     </nav>
 
@@ -135,6 +139,8 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black/50 hidden z-40"></div>
 
+    <script src="js/theme-manager.js"></script>
+    <script src="js/notification-manager.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>

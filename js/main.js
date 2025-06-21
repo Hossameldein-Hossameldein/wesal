@@ -143,33 +143,13 @@ function getCurrentUser() {
     }
 }
 
-// Utility Functions
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 translate-x-full`;
-    
-    const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
-    notification.classList.add(bgColor, 'text-white');
-    
-    notification.innerHTML = `
-        <div class="flex items-center justify-between">
-            <span>${message}</span>
-            <button class="mr-2 text-white hover:text-gray-200" onclick="this.parentElement.parentElement.remove()">✕</button>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Animate in
-    setTimeout(() => {
-        notification.classList.remove('translate-x-full');
-    }, 100);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        notification.classList.add('translate-x-full');
-        setTimeout(() => notification.remove(), 300);
-    }, 5000);
+// Utility Functions - Updated to use new notification system
+function showNotification(message, type = 'info', duration = 5000) {
+    if (window.NotificationManager) {
+        return window.NotificationManager.show(message, type, duration);
+    }
+    // Fallback for backward compatibility
+    console.log(`${type.toUpperCase()}: ${message}`);
 }
 
 function formatDate(date) {

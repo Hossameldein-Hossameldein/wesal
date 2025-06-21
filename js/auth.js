@@ -211,7 +211,9 @@ function showSuccessMessage(userName, isNewUser) {
 }
 
 function showError(message) {
-    if (window.WesalUtils && window.WesalUtils.showNotification) {
+    if (window.NotificationManager) {
+        window.NotificationManager.error(message);
+    } else if (window.WesalUtils && window.WesalUtils.showNotification) {
         window.WesalUtils.showNotification(message, 'error');
     } else {
         alert(message);
